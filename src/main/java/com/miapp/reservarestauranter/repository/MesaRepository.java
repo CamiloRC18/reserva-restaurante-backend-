@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface MesaRepository extends JpaRepository <Mesa, Long> {
 
-    List<Mesa> findByCantidad (int cantidad);
+    List<Mesa> findByCapacidadGreaterThanEqual (Integer capacidad);
 
-    Example<Mesa> id(Long id);
 }

@@ -2,6 +2,8 @@ package com.miapp.reservarestauranter.service;
 
 import com.miapp.reservarestauranter.dto.ReservaRequestDTO;
 import com.miapp.reservarestauranter.dto.ReservaResponseDTO;
+import com.miapp.reservarestauranter.exception.MesaNoDisponibleException;
+import com.miapp.reservarestauranter.exception.RecursoNoEncontradoException;
 import com.miapp.reservarestauranter.model.EstadoReserva;
 import com.miapp.reservarestauranter.model.Mesa;
 import com.miapp.reservarestauranter.model.Reserva;
@@ -29,11 +31,11 @@ public class ReservaService {
         Mesa mesa = mesaService.Listarporid(request.mesaId());
 
         if (request.numeroPersonas() > mesa.getCapacidad()) {
-            throw new RuntimeException("La mesa tiene capacidad para " + mesa.getCapacidad() + " personas");
+            throw new MesaNoDisponibleException ("La mesa tiene capacidad para " + mesa.getCapacidad() + " personas");
         }
 
         if (!hayDisponibilidad(request.mesaId(), request.fecha(), request.hora())) {
-            throw new RuntimeException("La mesa ya está reservada en ese horario");
+            throw new MesaNoDisponibleException ("La mesa ya está reservada en ese horario");
         }
 
         Reserva reserva = new Reserva();
@@ -68,7 +70,7 @@ public class ReservaService {
     //metodos privados
     private Reserva buscarEntidad(Long id) {
         return reservaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Reserva no encontrada con id " + id));
+                .orElseThrow(() -> new RecursoNoEncontradoException("Reserva no encontrada con id " + id));
     }
 
     private boolean hayDisponibilidad(Long mesaId, LocalDate fecha, LocalTime horaSolicitada) {

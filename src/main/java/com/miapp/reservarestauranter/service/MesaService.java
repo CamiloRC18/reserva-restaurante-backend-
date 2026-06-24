@@ -1,7 +1,7 @@
 package com.miapp.reservarestauranter.service;
 
+import com.miapp.reservarestauranter.exception.RecursoNoEncontradoException;
 import com.miapp.reservarestauranter.model.Mesa;
-import com.miapp.reservarestauranter.model.Reserva;
 import com.miapp.reservarestauranter.repository.MesaRepository;
 import com.miapp.reservarestauranter.dto.MesaDTO;
 import lombok.RequiredArgsConstructor;
@@ -24,11 +24,11 @@ public class MesaService {
 
     public Mesa Listarporid(Long id) {
         return mesaRepository.findById(id)
-                .orElseThrow (() -> new RuntimeException("Mesa no encontrada con id " + id));
+                .orElseThrow (() -> new RecursoNoEncontradoException("Mesa no encontrada con id " + id));
     }
 
-    public List<MesaDTO> buscarDisponiblesPorCapacidad(Integer cantidad) {
-        return mesaRepository.findByCantidad(cantidad).stream()
+    public List<MesaDTO> buscarDisponiblesPorCapacidad(Integer capacidad) {
+        return mesaRepository.findByCapacidadGreaterThanEqual(capacidad).stream()
                 .map(this::aDTO)
                 .toList();
     }
