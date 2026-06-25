@@ -24,8 +24,8 @@ public class Reserva {
     @Column(nullable = false)
     private LocalTime hora;
 
-    @Column (nullable = false)
-    private Integer telefono;
+    @Column (nullable = true)
+    private String telefono;
 
     @Column(nullable = false)
     private String email;

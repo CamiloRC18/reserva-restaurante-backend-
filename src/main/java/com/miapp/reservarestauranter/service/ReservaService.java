@@ -40,7 +40,7 @@ public class ReservaService {
 
         Reserva reserva = new Reserva();
         reserva.setMesa(mesa);
-        reserva.setCliente(request.Cliente());
+        reserva.setCliente(request.cliente());
         reserva.setTelefono(request.telefono());
         reserva.setEmail(request.email());
         reserva.setFecha(request.fecha());

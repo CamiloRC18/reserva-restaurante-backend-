@@ -32,6 +32,13 @@ public class MesaService {
                 .map(this::aDTO)
                 .toList();
     }
+    public Mesa ActualizarCapacidad(long id, Integer nuevacapacidad) {
+            Mesa mesa = Listarporid(id);
+            mesa.setCapacidad(nuevacapacidad);
+            return mesaRepository.save(mesa);
+    }
+
+
     private MesaDTO aDTO(Mesa mesa) {
         return new MesaDTO(mesa.getId(), mesa.getNombre(), mesa.getCapacidad(), mesa.getActiva());
     }

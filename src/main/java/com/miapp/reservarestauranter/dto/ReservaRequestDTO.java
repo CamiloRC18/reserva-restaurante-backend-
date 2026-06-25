@@ -14,13 +14,14 @@ public record ReservaRequestDTO(
         Long mesaId,
 
         @NotBlank(message = "El nombre es obligatorio")
-        String Cliente,
+        String cliente,
 
         @NotBlank(message = "El email es obligatorio")
         @Email(message = "El email no es válido")
         String email,
 
-        Integer telefono,
+        @NotNull(message = "El numero de telefono es obligatorio")
+        String telefono,
 
         @NotNull(message = "La fecha es obligatoria")
         @FutureOrPresent(message = "La fecha no puede ser en el pasado")

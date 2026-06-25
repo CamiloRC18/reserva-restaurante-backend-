@@ -12,7 +12,7 @@ public record ReservaResponseDTO(
         LocalDate fecha,
         LocalTime hora,
         Integer numeroPersonas,
-        Integer telefono,
+        String telefono,
         EstadoReserva estado
 ) {
 }

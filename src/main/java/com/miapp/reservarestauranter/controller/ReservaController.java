@@ -37,8 +37,8 @@ public class ReservaController {
     }
 
     @PatchMapping("/{id}/estado")
-    public ReservaResponseDTO cambiarEstado(@PathVariable Long id, @RequestBody EstadoReserva nuevoEstado) {
-        return reservaService.cambiarEstado(id, nuevoEstado);
+    public ReservaResponseDTO cambiarEstado(@PathVariable Long id, @RequestParam EstadoReserva estado) {
+        return reservaService.cambiarEstado(id, estado);
     }
 
 }

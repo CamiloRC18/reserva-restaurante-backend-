@@ -25,4 +25,8 @@ public class MesaController {
     public ResponseEntity<Mesa> obtener(@PathVariable Long id) {
         return ResponseEntity.ok(mesaService.Listarporid(id));
     }
+    @PatchMapping("/{id}/capacidad")
+    public Mesa ActualizarCapacidad (@PathVariable Long id, @RequestParam Integer  capacidad ) {
+        return mesaService.ActualizarCapacidad(id, capacidad);
+    }
 }
